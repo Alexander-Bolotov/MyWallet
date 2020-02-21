@@ -5,9 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -33,13 +31,16 @@ public class User implements UserDetails, Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<Role>();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Wallet> wallets = new ArrayList<>();
 
-    public User(String name, String password, Set<Role> roles) {
 
+
+    public User(String name, String password, Set<Role> roles, List<Wallet> wallets) {
         this.name = name;
         this.password = password;
         this.roles = roles;
-
+        this.wallets = wallets;
     }
 
     public User() {
@@ -118,6 +119,14 @@ public class User implements UserDetails, Serializable {
         role.getUsers().remove(this);
     }
 
+    public List<Wallet> getWallets() {
+        return wallets;
+    }
+
+    public void setWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -125,6 +134,7 @@ public class User implements UserDetails, Serializable {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
+                ", wallets=" + wallets +
                 '}';
     }
 }

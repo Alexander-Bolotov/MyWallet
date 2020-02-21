@@ -2,18 +2,17 @@ package MyWallet.domain.model;
 
 import javax.persistence.*;
 import java.util.Currency;
-
 @Entity
-@Table(name = "users")
+@Table(name = "wallets")
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
-    @Column(name = "title", unique = true)
-    private String title;
+    @Column(name = "name", unique = true)
+    private String name;
 
     @Column(name = "currency")
     private Currency currency;
@@ -21,12 +20,38 @@ public class Wallet {
     @Column(name = "sum")
     private int sum;
 
-    @Column(name = "minSum")
-    private int minSum;
+    public Wallet() {
+    }
 
-    @Column(name = "userOwner")
-    private User userOwner;
+    public Long getId() {
+        return id;
+    }
 
-    @Column(name = "typeOfTransaction")
-    private TypeOfTransaction typeOfTransaction;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
 }

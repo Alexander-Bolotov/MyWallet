@@ -1,6 +1,7 @@
 package MyWallet.domain.config;
 
 import MyWallet.domain.config.handler.LoginSuccessHandler;
+import MyWallet.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,8 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import ru.aibolotov.Spring.BootApp1.config.handler.LoginSuccessHandler;
-import ru.aibolotov.Spring.BootApp1.service.UserService;
+
 
 
 @Configuration
